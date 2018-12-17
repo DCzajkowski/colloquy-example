@@ -29,4 +29,3 @@ Route::post('/tickets/4', 'TicketController@postPayment');
 
 Route::get('/tickets/5', 'TicketController@getDone');
 Route::post('/tickets/5', 'TicketController@postDone');
-

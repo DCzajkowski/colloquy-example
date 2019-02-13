@@ -21,6 +21,17 @@ class TicketController extends Controller
         $this->request = $request;
     }
 
+    private function getStartTicketFlow()
+    {
+        if ($this->form && $this->form->step !== 0) {
+            $routeName = ['getPickSeats', 'getPickTickets', 'getUserDetails', 'getPayment', 'getDone'][$this->form->step];
+
+            return redirect()->route($routeName);
+        }
+
+        return redirect()->route('getPickSeats');
+    }
+
     /** @ColloquyBegin */
     private function getPickSeats()
     {
@@ -31,6 +42,7 @@ class TicketController extends Controller
 
     private function postPickSeats()
     {
+        $this->form->step = 1;
         $this->form->seats = $this->request->seats;
 
         return redirect()->route('getPickTickets');
@@ -43,6 +55,7 @@ class TicketController extends Controller
 
     private function postPickTickets()
     {
+        $this->form->step += 1;
         $this->form->ticketType = $this->request->type;
 
         return redirect()->route('getUserDetails');
@@ -55,6 +68,7 @@ class TicketController extends Controller
 
     private function postUserDetails()
     {
+        $this->form->step += 1;
         $this->form->user->name = $this->request->name;
         $this->form->user->email = $this->request->email;
 
@@ -68,6 +82,7 @@ class TicketController extends Controller
 
     private function postPayment()
     {
+        $this->form->step += 1;
         $this->form->paid = $this->request->paid;
 
         return redirect()->route('getDone');

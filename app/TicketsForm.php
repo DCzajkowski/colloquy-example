@@ -10,6 +10,7 @@ class TicketsForm
     public $seats;
     public $ticketType;
     public $paid;
+    public $step = 0;
 
     public function __construct()
     {

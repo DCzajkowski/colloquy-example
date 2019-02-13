@@ -66,7 +66,7 @@
     <body>
         <div class="flex-center position-ref full-height">
             <div class="top-right links">
-                <a href="{{ route('getPickSeats') }}">Buy Tickets</a>
+                <a href="{{ route('getStartTicketFlow') }}">Buy Tickets</a>
             </div>
 
             <div class="content">

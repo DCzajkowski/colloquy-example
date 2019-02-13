@@ -15,6 +15,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/tickets', 'TicketController@getStartTicketFlow')->name('getStartTicketFlow');
+
 Route::get('/tickets/1', 'TicketController@getPickSeats')->name('getPickSeats');
 Route::post('/tickets/1', 'TicketController@postPickSeats')->name('postPickSeats');
 
